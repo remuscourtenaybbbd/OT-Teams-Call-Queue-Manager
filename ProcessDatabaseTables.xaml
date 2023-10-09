@@ -1,0 +1,434 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ProcessDatabaseTables" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:m="clr-namespace:MSSQLInterface;assembly=MSSQLInterface" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:md="clr-namespace:MSSQLInterface.DataTables;assembly=MSSQLInterface" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_GenesysTeamAgentsDT" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_CallQueuesDT" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_TeamToQueueMappingDT" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_CurrentDate" Type="InArgument(s:DateTime)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>1095,989</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>MSSQLInterface</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>MSSQLInterface.DataTables</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>MSSQLInterface</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ProcessDatabaseTables" sap:VirtualizedContainerService.HintSize="512,924" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="catalogueName" />
+      <Variable x:TypeArguments="ui:DatabaseConnection" Name="databaseConnection" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MasterTeamsCallQueuesDatabaseName" CacheStrategy="None" DisplayName="Get Asset" FolderPath="OT/Teams Call Queue Manager" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">
+          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">catalogueName</CSharpReference>
+        </OutArgument>
+      </ui:GetRobotAsset.Value>
+    </ui:GetRobotAsset>
+    <m:GetMasterDatabaseConnection DisplayName="GetDatabaseConnection" sap:VirtualizedContainerService.HintSize="450,141" sap2010:WorkflowViewState.IdRef="GetMasterDatabaseConnection_1">
+      <m:GetMasterDatabaseConnection.in_CatalogName>
+        <InArgument x:TypeArguments="x:String">
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">catalogueName</CSharpValue>
+        </InArgument>
+      </m:GetMasterDatabaseConnection.in_CatalogName>
+      <m:GetMasterDatabaseConnection.out_DatabaseConnection>
+        <OutArgument x:TypeArguments="ui:DatabaseConnection">
+          <CSharpReference x:TypeArguments="ui:DatabaseConnection" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">databaseConnection</CSharpReference>
+        </OutArgument>
+      </m:GetMasterDatabaseConnection.out_DatabaseConnection>
+    </m:GetMasterDatabaseConnection>
+    <Sequence sap2010:Annotation.AnnotationText="Bulk writes the current days agent &lt;-&gt; genesys team allocations to the genesys_team_agents table in the database." DisplayName="Update Genesys Team Agents database table" sap:VirtualizedContainerService.HintSize="450,123" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="tableName" />
+        <Variable x:TypeArguments="scg:Dictionary(x:String, s:Type)" Name="columnTypes" />
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="columnDefaultValues" />
+        <Variable x:TypeArguments="s:String[]" Name="joinColumns" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence DisplayName="Get assets / set local variables" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MasterDatabaseGenesysTeamAgentsTableName" CacheStrategy="None" DisplayName="Get Asset" FolderPath="OT/Teams Call Queue Manager" sap:VirtualizedContainerService.HintSize="423,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+          <ui:GetRobotAsset.Value>
+            <OutArgument x:TypeArguments="x:String">
+              <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">tableName</CSharpReference>
+            </OutArgument>
+          </ui:GetRobotAsset.Value>
+        </ui:GetRobotAsset>
+        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="423,163" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign.AssignOperations>
+            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, s:Type)">
+                    <CSharpReference x:TypeArguments="scg:Dictionary(x:String, s:Type)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">columnTypes</CSharpReference>
+                  </OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Type)">
+                    <CSharpValue x:TypeArguments="scg:Dictionary(x:String, s:Type)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7" xml:space="preserve">new Dictionary&lt;string, Type&gt;() 
+{ 
+	{ "work_date", System.Type.GetType("System.DateTime") } 
+}</CSharpValue>
+                  </InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                    <CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_5">columnDefaultValues</CSharpReference>
+                  </OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                    <CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8" xml:space="preserve">new Dictionary&lt;string, object&gt;() 
+{ 
+	{ "work_date", in_CurrentDate } 
+}</CSharpValue>
+                  </InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="s:String[]">
+                    <CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_9">joinColumns</CSharpReference>
+                  </OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="s:String[]">
+                    <CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">new string[] {"user_id", "acronym", "work_date"}</CSharpValue>
+                  </InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+            </scg:List>
+          </ui:MultipleAssign.AssignOperations>
+        </ui:MultipleAssign>
+      </Sequence>
+      <md:AddDataTableColumns sap2010:Annotation.AnnotationText="DataColumn(&quot;work_date&quot;, System.DateTime)" sap:VirtualizedContainerService.HintSize="450,223" sap2010:WorkflowViewState.IdRef="AddDataTableColumns_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <md:AddDataTableColumns.dataTable>
+          <InOutArgument x:TypeArguments="sd:DataTable">
+            <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">in_GenesysTeamAgentsDT</CSharpReference>
+          </InOutArgument>
+        </md:AddDataTableColumns.dataTable>
+        <md:AddDataTableColumns.in_NewColumnDefaultValuesDict>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+            <CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">columnDefaultValues</CSharpValue>
+          </InArgument>
+        </md:AddDataTableColumns.in_NewColumnDefaultValuesDict>
+        <md:AddDataTableColumns.in_NewColumnTypesDict>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Type)">
+            <CSharpValue x:TypeArguments="scg:Dictionary(x:String, s:Type)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">columnTypes</CSharpValue>
+          </InArgument>
+        </md:AddDataTableColumns.in_NewColumnTypesDict>
+      </md:AddDataTableColumns>
+      <md:UploadStringDataTableToDatabase sap:VirtualizedContainerService.HintSize="450,243" sap2010:WorkflowViewState.IdRef="UploadStringDataTableToDatabase_1">
+        <md:UploadStringDataTableToDatabase.in_DatabaseConnection>
+          <InArgument x:TypeArguments="ui:DatabaseConnection">
+            <CSharpValue x:TypeArguments="ui:DatabaseConnection" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">databaseConnection</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_DatabaseConnection>
+        <md:UploadStringDataTableToDatabase.in_DatabaseTableName>
+          <InArgument x:TypeArguments="x:String">
+            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">tableName</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_DatabaseTableName>
+        <md:UploadStringDataTableToDatabase.in_JoinColumns>
+          <InArgument x:TypeArguments="s:String[]">
+            <CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">joinColumns</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_JoinColumns>
+        <md:UploadStringDataTableToDatabase.in_StringDT>
+          <InArgument x:TypeArguments="sd:DataTable">
+            <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">in_GenesysTeamAgentsDT</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_StringDT>
+      </md:UploadStringDataTableToDatabase>
+    </Sequence>
+    <Sequence sap2010:Annotation.AnnotationText="Update the currently stored call_queues table with the most recent active call queues data." DisplayName="Update Call Queues database table" sap:VirtualizedContainerService.HintSize="450,123" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="tableName" />
+        <Variable x:TypeArguments="s:String[]" Name="joinColumns" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">
+            <CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_10">joinColumns</CSharpReference>
+          </OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">
+            <CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_17">new string[] {"queue_id"}</CSharpValue>
+          </InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MasterDatabaseCallQueuesTableName" CacheStrategy="None" DisplayName="Get Asset" FolderPath="OT/Teams Call Queue Manager" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+        <ui:GetRobotAsset.Value>
+          <OutArgument x:TypeArguments="x:String">
+            <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">tableName</CSharpReference>
+          </OutArgument>
+        </ui:GetRobotAsset.Value>
+      </ui:GetRobotAsset>
+      <md:UploadStringDataTableToDatabase sap:VirtualizedContainerService.HintSize="434,243" sap2010:WorkflowViewState.IdRef="UploadStringDataTableToDatabase_2">
+        <md:UploadStringDataTableToDatabase.in_DatabaseConnection>
+          <InArgument x:TypeArguments="ui:DatabaseConnection">
+            <CSharpValue x:TypeArguments="ui:DatabaseConnection" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">databaseConnection</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_DatabaseConnection>
+        <md:UploadStringDataTableToDatabase.in_DatabaseTableName>
+          <InArgument x:TypeArguments="x:String">
+            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">tableName</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_DatabaseTableName>
+        <md:UploadStringDataTableToDatabase.in_JoinColumns>
+          <InArgument x:TypeArguments="s:String[]">
+            <CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">joinColumns</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_JoinColumns>
+        <md:UploadStringDataTableToDatabase.in_StringDT>
+          <InArgument x:TypeArguments="sd:DataTable">
+            <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">in_CallQueuesDT</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_StringDT>
+      </md:UploadStringDataTableToDatabase>
+    </Sequence>
+    <Sequence sap2010:Annotation.AnnotationText="Bulk write the current day's genesys team &lt; -&gt; call queue mapping to the team_to_queue_mapping table in the database." DisplayName="Update Team to Queue Mapping database table" sap:VirtualizedContainerService.HintSize="450,123" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="tableName" />
+        <Variable x:TypeArguments="s:String[]" Name="joinColumns" />
+        <Variable x:TypeArguments="scg:Dictionary(x:String, s:Type)" Name="columnTypes" />
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="columnDefaultValues" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence DisplayName="Get assets / set local variables" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MasterDatabaseTeamToQueueMappingTableName" CacheStrategy="None" DisplayName="Get Asset" FolderPath="OT/Teams Call Queue Manager" sap:VirtualizedContainerService.HintSize="423,143" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
+          <ui:GetRobotAsset.Value>
+            <OutArgument x:TypeArguments="x:String">
+              <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">tableName</CSharpReference>
+            </OutArgument>
+          </ui:GetRobotAsset.Value>
+        </ui:GetRobotAsset>
+        <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="423,163" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+          <ui:MultipleAssign.AssignOperations>
+            <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, s:Type)">
+                    <CSharpReference x:TypeArguments="scg:Dictionary(x:String, s:Type)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_13">columnTypes</CSharpReference>
+                  </OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Type)">
+                    <CSharpValue x:TypeArguments="scg:Dictionary(x:String, s:Type)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_24" xml:space="preserve">new Dictionary&lt;string, Type&gt;() 
+{ 
+	{ "work_date", System.Type.GetType("System.DateTime") } 
+}</CSharpValue>
+                  </InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                    <CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_14">columnDefaultValues</CSharpReference>
+                  </OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+                    <CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_25" xml:space="preserve">new Dictionary&lt;string, object&gt;() 
+{ 
+	{ "work_date", in_CurrentDate } 
+}</CSharpValue>
+                  </InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+              <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                <ui:AssignOperation.To>
+                  <OutArgument x:TypeArguments="s:String[]">
+                    <CSharpReference x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpReference`1_15">joinColumns</CSharpReference>
+                  </OutArgument>
+                </ui:AssignOperation.To>
+                <ui:AssignOperation.Value>
+                  <InArgument x:TypeArguments="s:String[]">
+                    <CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_26">new string[] {"acronym", "queue_id", "work_date"}</CSharpValue>
+                  </InArgument>
+                </ui:AssignOperation.Value>
+              </ui:AssignOperation>
+            </scg:List>
+          </ui:MultipleAssign.AssignOperations>
+        </ui:MultipleAssign>
+      </Sequence>
+      <md:AddDataTableColumns sap:VirtualizedContainerService.HintSize="450,192" sap2010:WorkflowViewState.IdRef="AddDataTableColumns_2">
+        <md:AddDataTableColumns.dataTable>
+          <InOutArgument x:TypeArguments="sd:DataTable">
+            <CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_12">in_TeamToQueueMappingDT</CSharpReference>
+          </InOutArgument>
+        </md:AddDataTableColumns.dataTable>
+        <md:AddDataTableColumns.in_NewColumnDefaultValuesDict>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">
+            <CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">columnDefaultValues</CSharpValue>
+          </InArgument>
+        </md:AddDataTableColumns.in_NewColumnDefaultValuesDict>
+        <md:AddDataTableColumns.in_NewColumnTypesDict>
+          <InArgument x:TypeArguments="scg:Dictionary(x:String, s:Type)">
+            <CSharpValue x:TypeArguments="scg:Dictionary(x:String, s:Type)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">columnTypes</CSharpValue>
+          </InArgument>
+        </md:AddDataTableColumns.in_NewColumnTypesDict>
+      </md:AddDataTableColumns>
+      <md:UploadStringDataTableToDatabase sap:VirtualizedContainerService.HintSize="450,243" sap2010:WorkflowViewState.IdRef="UploadStringDataTableToDatabase_3">
+        <md:UploadStringDataTableToDatabase.in_DatabaseConnection>
+          <InArgument x:TypeArguments="ui:DatabaseConnection">
+            <CSharpValue x:TypeArguments="ui:DatabaseConnection" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20">databaseConnection</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_DatabaseConnection>
+        <md:UploadStringDataTableToDatabase.in_DatabaseTableName>
+          <InArgument x:TypeArguments="x:String">
+            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_21">tableName</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_DatabaseTableName>
+        <md:UploadStringDataTableToDatabase.in_JoinColumns>
+          <InArgument x:TypeArguments="s:String[]">
+            <CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_23">joinColumns</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_JoinColumns>
+        <md:UploadStringDataTableToDatabase.in_StringDT>
+          <InArgument x:TypeArguments="sd:DataTable">
+            <CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_22">in_TeamToQueueMappingDT</CSharpValue>
+          </InArgument>
+        </md:UploadStringDataTableToDatabase.in_StringDT>
+      </md:UploadStringDataTableToDatabase>
+    </Sequence>
+  </Sequence>
+</Activity>
